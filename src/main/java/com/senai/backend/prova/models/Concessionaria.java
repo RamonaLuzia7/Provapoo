@@ -1,13 +1,14 @@
 package com.senai.backend.prova.models;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "concessionaria")
 public class Concessionaria {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +23,10 @@ public class Concessionaria {
       
     
     @Column(name="estado")
-    private String estado;
-    
-    @OneToMany(mappedBy = "concessionaria")
-    private List<Carro> carros;
+    private String estado;   
+
+    public Concessionaria() {
+    }
 
     public Concessionaria(Integer id, String nome, String cidade, String estado) {
         this.id = id;
@@ -33,7 +34,7 @@ public class Concessionaria {
         this.cidade = cidade;
         this.estado = estado;
     }
-
+    
     public Integer getId() {
         return id;
     }
@@ -65,8 +66,5 @@ public class Concessionaria {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    
-
 
 }

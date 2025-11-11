@@ -1,8 +1,6 @@
 package com.senai.backend.prova.models;
 
 import java.time.LocalDate;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,14 +31,18 @@ public class Carro {
     @ManyToOne
     @JoinColumn(name="id_concessionaria")
 
+    
+    private Carro carro;
+    
+    public Carro() {
+    }
+    
+    public Integer getId() {
+        return id;
+    }
 
-
-    public Carro(Integer id, String modelo, String marca, LocalDate preco, String concessionaria) {
+    public void setId(Integer id) {
         this.id = id;
-        this.modelo = modelo;
-        this.marca = marca;
-        this.preco = preco;
-        this.concessionaria = concessionaria;
     }
 
     public String getModelo() {
@@ -67,25 +69,14 @@ public class Carro {
         this.preco = preco;
     }
 
-    public String getConcessionaria() {
-        return concessionaria;
+    public Carro getCarro() {
+        return carro;
     }
 
-    public void setConcessionaria(String concessionaria) {
-        this.concessionaria = concessionaria;
+    public void setCarro(Carro carro) {
+        this.carro = carro;
     }
-
-    @Column(name="concessionaria")
-    private String concessionaria;
-
-
- public Integer getId() {
-    return id;
  }
 
- public void setId(Integer id) {
-    this.id = id;
- }
 
-}
 

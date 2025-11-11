@@ -21,16 +21,18 @@ public class Cliente {
  @GeneratedValue(strategy = GenerationType.IDENTITY)
  @Column(name="id")
  private Integer id;
-  
-    @ManyToMany    
-    @JoinTable(
-        name="locacao",
-        joinColumns = @JoinColumn(name= "id_cliente", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn( name ="id_carro", referencedColumnName="id")
+       
+        @ManyToMany
+        @JoinTable(
+            name="cliente_carro",
+            joinColumns=@JoinColumn(name="id_cliente",referencedColumnName = "id"),
+            inverseJoinColumns=@JoinColumn(name ="id_concessionaria",referencedColumnName = "id" )
         )
-    private List<Carro> carros;
+        private List<Carro> carros;
 
 
+     public Cliente() {
+    }
     public Cliente(Integer id, String nome, String email, String cpf, LocalDate data_nascimento, List<Carro> carros) {
     this.id = id;
     this.nome = nome;
@@ -38,7 +40,7 @@ public class Cliente {
     this.cpf = cpf;
     this.data_nascimento = data_nascimento;
     this.carros = carros;
-}
+    }
 
     @Column(name="nome")
     private String nome ;
@@ -99,6 +101,5 @@ public class Cliente {
     
     @Column(name="data_nascimento")
     private LocalDate data_nascimento;
-
 
 }
